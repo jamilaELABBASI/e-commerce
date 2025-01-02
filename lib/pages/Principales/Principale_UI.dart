@@ -1,3 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce/Style/AppColors.dart';
+import 'package:e_commerce/pages/Principales/Categories.dart';
 import 'package:flutter/material.dart';
 
 class Principale_UI extends StatefulWidget {
@@ -8,30 +11,139 @@ class Principale_UI extends StatefulWidget {
 }
 
 class _Principale_UIState extends State<Principale_UI> {
+  final List<String> images = [
+    "images/principale_image1.jpg",
+    "images/principale_image2.jpg",
+    "images/principale_image3.jpg"
+  ];
+
+  final List<List<String>> texts = [
+    ["50 % off", "Grab", "Yours Now"],
+    ["BLACK", "FRIDAY", "COLLECTION"],
+    ["SPECIAL OFFER", "SUMMER", "SALES", "UP TO 80% OFF"]
+  ];
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Shopion"),
-            Row(
-              children: [
-                Icon(Icons.search),
-                SizedBox(
-                  width: screenWidth * 0.04,
-                ),
-                Icon(Icons.notifications_active_rounded)
-              ],
-            )
-          ],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Shopion"),
+              Row(
+                children: [
+                  Icon(Icons.search),
+                  SizedBox(
+                    width: screenWidth * 0.04,
+                  ),
+                  Icon(Icons.notifications_active_rounded)
+                ],
+              )
+            ],
+          ),
         ),
-      ),
-      body: Column(),
-    );
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                child: CarouselSlider.builder(
+                  itemCount: images.length,
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: false,
+                    viewportFraction: 1.0,
+                  ),
+                  itemBuilder:
+                      (BuildContext context, int index, int realIndex) {
+                    return Container(
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          // Image
+                          Image.asset(
+                            images[index],
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: screenHeight *
+                                0.5, // Set a height for the image
+                          ),
+                          // Positioned Text on top of image
+                          Positioned(
+                            bottom: 20, // position from the bottom
+                            left: 20, // position from the left
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:
+                                  texts[index].asMap().entries.map((entry) {
+                                int textIndex = entry.key;
+                                String text = entry.value;
+
+                                // Apply different styles for each text in the list
+                                return Text(
+                                  text,
+                                  style: _getTextStyleForIndex(textIndex),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Text("data"),
+              Categories()
+            ],
+          ),
+        ));
+  }
+
+  // A helper function to return a specific text style for each index
+  TextStyle _getTextStyleForIndex(int index) {
+    switch (index) {
+      case 0:
+        return TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: AppColors().whiteColor,
+          backgroundColor: Colors.black.withOpacity(0.5),
+        );
+      case 1:
+        return TextStyle(
+          fontSize: 24,
+          //fontStyle: FontStyle.italic,
+          color: AppColors().whiteColor,
+          backgroundColor: Colors.black.withOpacity(0.5),
+        );
+      case 2:
+        return TextStyle(
+          fontSize: 22,
+          //fontWeight: FontWeight.normal,
+          color: AppColors().whiteColor,
+          backgroundColor: Colors.black.withOpacity(0.4),
+        );
+      case 3:
+        return TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: AppColors().whiteColor,
+          backgroundColor: Colors.black.withOpacity(0.6),
+        );
+      default:
+        return TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.normal,
+          color: AppColors().whiteColor,
+          backgroundColor: Colors.black.withOpacity(0.3),
+        );
+    }
   }
 }
