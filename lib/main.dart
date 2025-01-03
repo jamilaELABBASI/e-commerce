@@ -1,5 +1,6 @@
 import 'package:e_commerce/Routes/AppRoutes.dart';
 import 'package:e_commerce/pages/First_UI.dart';
+import 'package:e_commerce/pages/Principales/Principale_UI.dart';
 import 'package:e_commerce/pages/Skip_UI/First_Skip_UI.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
             return routes[settings.name]?.call(context) ?? const Scaffold();
           });
         },
-        // home: First_UI());
-        home: First_Skip_UI());
+        home: Principale_UI());
+    //home: First_Skip_UI());
   }
 }

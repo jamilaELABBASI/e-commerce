@@ -6,4 +6,5 @@ class AppColors {
   Color whiteColor = Color(0xFFFFFFFF);
   Color amberColor = Color(0xFFFFB500);
   Color blackColor = Color(0xFF000000);
+  Color brownColor = Color(0xFF6E4141);
 }

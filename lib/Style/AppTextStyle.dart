@@ -16,6 +16,13 @@ class AppTextStyle extends TextStyle {
   static TextStyle text3 = TextStyle(
     fontSize: 16.0,
     color: Colors.black,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle text4 = TextStyle(
+    fontSize: 10.0,
+    color: Colors.brown,
+    fontWeight: FontWeight.bold,
   );
 
   // Custom style with more flexibility
