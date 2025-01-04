@@ -2,6 +2,8 @@ import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../Models/Popular_Product_Model.dart';
+
 class Super_Flash_Sale extends StatefulWidget {
   const Super_Flash_Sale({super.key});
 

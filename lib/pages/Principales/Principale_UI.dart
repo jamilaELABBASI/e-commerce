@@ -71,7 +71,7 @@ class _Principale_UIState extends State<Principale_UI> {
                 options: CarouselOptions(
                   autoPlay: true,
                   enlargeCenterPage: false,
-                  viewportFraction: 1.0,
+                  viewportFraction: 1,
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   return Container(
@@ -88,8 +88,9 @@ class _Principale_UIState extends State<Principale_UI> {
                         ),
                         // Positioned Text on top of image
                         Positioned(
-                          bottom: 20, // position from the bottom
-                          left: 20, // position from the left
+                          bottom:
+                              screenHeight * 0.32, // position from the bottom
+                          left: screenWidth * 0.32, // position from the left
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: texts[index].asMap().entries.map((entry) {

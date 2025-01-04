@@ -3,6 +3,7 @@ import 'package:e_commerce/pages/Principales/Super_Flash_Sale.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../Models/Popular_Product_Model.dart';
 import '../../Style/AppColors.dart';
 
 class Categories extends StatefulWidget {
@@ -20,6 +21,52 @@ class _CategoriesState extends State<Categories> {
     "Woman's",
     "Kids"
   ];
+
+  final List<PopularProductModel> products = [
+    PopularProductModel(
+      titre: 'T-shirt Homme',
+      description: 'Un t-shirt confortable pour homme.',
+      image: 'images/popular_products/tshirt.jpg',
+      ancienPrix: 29.99,
+      nouveauPrix: 19.99,
+    ),
+    PopularProductModel(
+      titre: 'Jean Femme',
+      description: 'Un jean slim pour femme.',
+      image: 'images/popular_products/jean.jpg',
+      ancienPrix: 49.99,
+      nouveauPrix: 39.99,
+    ),
+    PopularProductModel(
+      titre: 'Veste en Cuir',
+      description: 'Une veste en cuir élégante.',
+      image: 'images/popular_products/veste.jpg',
+      ancienPrix: 99.99,
+      nouveauPrix: 79.99,
+    ),
+    PopularProductModel(
+      titre: 'T-shirt Homme',
+      description: 'Un t-shirt confortable pour homme.',
+      image: 'images/popular_products/tshirt.jpg',
+      ancienPrix: 29.99,
+      nouveauPrix: 19.99,
+    ),
+    PopularProductModel(
+      titre: 'Jean Femme',
+      description: 'Un jean slim pour femme.',
+      image: 'images/popular_products/jean.jpg',
+      ancienPrix: 49.99,
+      nouveauPrix: 39.99,
+    ),
+    PopularProductModel(
+      titre: 'Veste en Cuir',
+      description: 'Une veste en cuir élégante.',
+      image: 'images/popular_products/veste.jpg',
+      ancienPrix: 99.99,
+      nouveauPrix: 79.99,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -87,10 +134,10 @@ class _CategoriesState extends State<Categories> {
                   style: AppTextStyle.text2,
                 ),
                 Container(
-                  height: screenHeight * 0.29,
+                  height: screenHeight * 0.46,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: products.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -110,7 +157,7 @@ class _CategoriesState extends State<Categories> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      height: screenHeight * 0.14,
+                                      height: screenHeight * 0.3,
                                       decoration: BoxDecoration(
                                           color: AppColors().blackColor,
                                           borderRadius:
@@ -118,21 +165,21 @@ class _CategoriesState extends State<Categories> {
                                           image: DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
-                                                  "images/principale_image1.jpg"))),
+                                                  products[index].image))),
                                     ),
                                     SizedBox(
                                       height: screenHeight * 0.01,
                                     ),
                                     Text(
-                                      "LIPSY LONDON",
-                                      style: AppTextStyle.text4
+                                      products[index].titre,
+                                      style: AppTextStyle.text3
                                           .copyWith(color: Colors.grey),
                                     ),
                                     SizedBox(
                                       height: screenHeight * 0.01,
                                     ),
                                     Text(
-                                      "Mountain Warehouse for  ",
+                                      products[index].description,
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
                                       style: AppTextStyle.text2,
@@ -144,11 +191,18 @@ class _CategoriesState extends State<Categories> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("\$200",
+                                        Text(
+                                            "\$" +
+                                                products[index]
+                                                    .nouveauPrix
+                                                    .toString(),
                                             style: AppTextStyle.text2.copyWith(
                                                 color: AppColors().brownColor)),
                                         Text(
-                                          "\$420",
+                                          "\$" +
+                                              products[index]
+                                                  .ancienPrix
+                                                  .toString(),
                                           style: TextStyle(
                                               decoration:
                                                   TextDecoration.lineThrough),
