@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
+import 'package:e_commerce/pages/Principales/BestSellers.dart';
 import 'package:e_commerce/pages/Principales/Categories.dart';
 import 'package:e_commerce/pages/Principales/Flash_Sale.dart';
+import 'package:e_commerce/pages/Principales/PromoPictures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -112,7 +114,9 @@ class _Principale_UIState extends State<Principale_UI> {
             ),
             Categories(),
             Super_Flash_Sale(),
-            Flash_Sale()
+            Flash_Sale(),
+            PromoPictures(),
+            Bestsellers()
           ],
         ));
   }
