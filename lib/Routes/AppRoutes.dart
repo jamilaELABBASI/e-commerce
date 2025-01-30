@@ -20,7 +20,8 @@ class AppRoutes {
       '/Login': (context) => Login(),
       '/SignUp': (context) => SignUp(),
       '/Terms_Service': (context) => Terms_Service(),
-      '/Principale_UI': (context) => Principale_UI()
+      '/Principale_UI': (context) => Principale_UI(),
+      '/Discover': (context) => Discover(),
     };
   }
 }

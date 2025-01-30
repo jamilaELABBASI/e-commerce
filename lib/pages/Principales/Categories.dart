@@ -87,7 +87,7 @@ class _CategoriesState extends State<Categories> {
                   height: screenHeight * 0.02,
                 ),
                 Container(
-                  height: 50,
+                  height: screenHeight * 0.05,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories.length,

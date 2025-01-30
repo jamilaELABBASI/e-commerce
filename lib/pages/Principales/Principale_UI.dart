@@ -48,17 +48,30 @@ class _Principale_UIState extends State<Principale_UI> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Shopion"),
+              Text(
+                "Shopion",
+                style:
+                    AppTextStyle.text1.copyWith(color: AppColors().whiteColor),
+              ),
               Row(
                 children: [
-                  Icon(Icons.search),
+                  Icon(
+                    Icons.search,
+                    size: screenWidth * 0.08,
+                    color: AppColors().whiteColor,
+                  ),
                   SizedBox(
                     width: screenWidth * 0.04,
                   ),
-                  Icon(Icons.notifications_active_rounded)
+                  Icon(
+                    size: screenWidth * 0.08,
+                    Icons.notifications_active_rounded,
+                    color: AppColors().whiteColor,
+                  )
                 ],
               )
             ],
@@ -116,7 +129,58 @@ class _Principale_UIState extends State<Principale_UI> {
             Super_Flash_Sale(),
             Flash_Sale(),
             PromoPictures(),
-            Bestsellers()
+            Bestsellers(),
+            BottomAppBar(
+              color: Colors.black,
+              height: screenWidth * 0.15,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.ac_unit_outlined,
+                        size: screenWidth * 0.08,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.apps_sharp,
+                        size: screenWidth * 0.08,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.bookmark,
+                        size: screenWidth * 0.08,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        size: screenWidth * 0.08,
+                        color: Colors.white,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.person,
+                        size: screenWidth * 0.08,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ));
   }
