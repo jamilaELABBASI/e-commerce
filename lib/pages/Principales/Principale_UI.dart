@@ -8,6 +8,7 @@ import 'package:e_commerce/pages/Principales/PromoPictures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../Widgets/BottomBar.dart';
 import 'Super_Flash_Sale.dart';
 
 class Principale_UI extends StatefulWidget {
@@ -40,149 +41,108 @@ class _Principale_UIState extends State<Principale_UI> {
 
   final List<String> icons_categories = ["", ""];
 
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      Navigator.pushNamed(context, "");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.black,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Shopion",
-                style:
-                    AppTextStyle.text1.copyWith(color: AppColors().whiteColor),
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.search,
-                    size: screenWidth * 0.08,
-                    color: AppColors().whiteColor,
-                  ),
-                  SizedBox(
-                    width: screenWidth * 0.04,
-                  ),
-                  Icon(
-                    size: screenWidth * 0.08,
-                    Icons.notifications_active_rounded,
-                    color: AppColors().whiteColor,
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-        body: ListView(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              width: double.infinity,
-              child: CarouselSlider.builder(
-                itemCount: images.length,
-                options: CarouselOptions(
-                  autoPlay: true,
-                  enlargeCenterPage: false,
-                  viewportFraction: 1,
-                ),
-                itemBuilder: (BuildContext context, int index, int realIndex) {
-                  return Container(
-                    width: double.infinity,
-                    child: Stack(
-                      children: [
-                        // Image
-                        Image.asset(
-                          images[index],
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height:
-                              screenHeight * 0.5, // Set a height for the image
-                        ),
-                        // Positioned Text on top of image
-                        Positioned(
-                          bottom:
-                              screenHeight * 0.32, // position from the bottom
-                          left: screenWidth * 0.32, // position from the left
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: texts[index].asMap().entries.map((entry) {
-                              int textIndex = entry.key;
-                              String text = entry.value;
-                              // Apply different styles for each text in the list
-                              return Text(
-                                text,
-                                style: _getTextStyleForIndex(textIndex),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+            Text(
+              "Shopion",
+              style: AppTextStyle.text1.copyWith(color: AppColors().whiteColor),
             ),
-            Categories(),
-            Super_Flash_Sale(),
-            Flash_Sale(),
-            PromoPictures(),
-            Bestsellers(),
-            BottomAppBar(
-              color: Colors.black,
-              height: screenWidth * 0.15,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.ac_unit_outlined,
-                        size: screenWidth * 0.08,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.apps_sharp,
-                        size: screenWidth * 0.08,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.bookmark,
-                        size: screenWidth * 0.08,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        size: screenWidth * 0.08,
-                        color: Colors.white,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.person,
-                        size: screenWidth * 0.08,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+            Row(
+              children: [
+                Icon(
+                  Icons.search,
+                  size: screenWidth * 0.08,
+                  color: AppColors().whiteColor,
                 ),
-              ),
+                SizedBox(
+                  width: screenWidth * 0.04,
+                ),
+                Icon(
+                  size: screenWidth * 0.08,
+                  Icons.notifications_active_rounded,
+                  color: AppColors().whiteColor,
+                )
+              ],
             )
           ],
-        ));
+        ),
+      ),
+      body: ListView(
+        children: [
+          Container(
+            width: double.infinity,
+            child: CarouselSlider.builder(
+              itemCount: images.length,
+              options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: false,
+                viewportFraction: 1,
+              ),
+              itemBuilder: (BuildContext context, int index, int realIndex) {
+                return Container(
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      // Image
+                      Image.asset(
+                        images[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height:
+                            screenHeight * 0.5, // Set a height for the image
+                      ),
+                      // Positioned Text on top of image
+                      Positioned(
+                        bottom: screenHeight * 0.32, // position from the bottom
+                        left: screenWidth * 0.32, // position from the left
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: texts[index].asMap().entries.map((entry) {
+                            int textIndex = entry.key;
+                            String text = entry.value;
+                            // Apply different styles for each text in the list
+                            return Text(
+                              text,
+                              style: _getTextStyleForIndex(textIndex),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          Categories(),
+          Super_Flash_Sale(),
+          Flash_Sale(),
+          PromoPictures(),
+          Bestsellers(),
+        ],
+      ),
+      bottomNavigationBar: BottomBar(
+          selectedIndex: _selectedIndex, onItemSelected: _onItemTapped),
+    );
   }
 
   // A helper function to return a specific text style for each index
