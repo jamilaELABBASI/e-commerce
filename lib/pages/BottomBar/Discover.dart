@@ -209,7 +209,6 @@ class Discover extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
     );
   }
 }

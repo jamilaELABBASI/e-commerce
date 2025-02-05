@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
+import 'package:e_commerce/pages/BottomBar/Discover.dart';
+import 'package:e_commerce/pages/BottomBar/Shop.dart';
 import 'package:e_commerce/pages/Principales/BestSellers.dart';
 import 'package:e_commerce/pages/Principales/Categories.dart';
 import 'package:e_commerce/pages/Principales/Flash_Sale.dart';
@@ -19,129 +21,105 @@ class Principale_UI extends StatefulWidget {
 }
 
 class _Principale_UIState extends State<Principale_UI> {
-  final List<String> images = [
-    "images/principale_image1.jpg",
-    "images/principale_image2.jpg",
-    "images/principale_image3.jpg"
+  int _currentIndex = 0;
+  List<Widget> body = [
+    Shop(),
+    Discover(),
+    Shop(),
+    Discover(),
+    Shop(),
   ];
-
-  final List<List<String>> texts = [
-    ["50 % off", "Grab", "Yours Now"],
-    ["BLACK", "FRIDAY", "COLLECTION"],
-    ["SPECIAL OFFER", "SUMMER", "SALES", "UP TO 80% OFF"]
-  ];
-
-  final List<String> categories = [
-    "All Categories",
-    "On Sale",
-    "Man's",
-    "Woman's",
-    "Kids"
-  ];
-
-  final List<String> icons_categories = ["", ""];
-
-  int _selectedIndex = 1;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.pushNamed(context, "");
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Shopion",
-              style: AppTextStyle.text1.copyWith(color: AppColors().whiteColor),
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.search,
-                  size: screenWidth * 0.08,
-                  color: AppColors().whiteColor,
-                ),
-                SizedBox(
-                  width: screenWidth * 0.04,
-                ),
-                Icon(
-                  size: screenWidth * 0.08,
-                  Icons.notifications_active_rounded,
-                  color: AppColors().whiteColor,
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            width: double.infinity,
-            child: CarouselSlider.builder(
-              itemCount: images.length,
-              options: CarouselOptions(
-                autoPlay: true,
-                enlargeCenterPage: false,
-                viewportFraction: 1,
-              ),
-              itemBuilder: (BuildContext context, int index, int realIndex) {
-                return Container(
-                  width: double.infinity,
-                  child: Stack(
-                    children: [
-                      // Image
-                      Image.asset(
-                        images[index],
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height:
-                            screenHeight * 0.5, // Set a height for the image
-                      ),
-                      // Positioned Text on top of image
-                      Positioned(
-                        bottom: screenHeight * 0.32, // position from the bottom
-                        left: screenWidth * 0.32, // position from the left
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: texts[index].asMap().entries.map((entry) {
-                            int textIndex = entry.key;
-                            String text = entry.value;
-                            // Apply different styles for each text in the list
-                            return Text(
-                              text,
-                              style: _getTextStyleForIndex(textIndex),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
+      appBar: _currentIndex == 1
+          ? null
+          : AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.black,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Shopion",
+                    style: AppTextStyle.text1
+                        .copyWith(color: AppColors().whiteColor),
                   ),
-                );
-              },
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        size: screenWidth * 0.08,
+                        color: AppColors().whiteColor,
+                      ),
+                      SizedBox(
+                        width: screenWidth * 0.04,
+                      ),
+                      Icon(
+                        size: screenWidth * 0.08,
+                        Icons.notifications_active_rounded,
+                        color: AppColors().whiteColor,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+      body: body[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: screenWidth * 0.099,
+        currentIndex: _currentIndex,
+        onTap: (int newIndex) {
+          setState(() {
+            _currentIndex = newIndex;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: "Shop",
+            backgroundColor: AppColors().blackColor,
+            icon: Icon(
+              Icons.shopify_sharp,
+              color: AppColors().whiteColor,
             ),
           ),
-          Categories(),
-          Super_Flash_Sale(),
-          Flash_Sale(),
-          PromoPictures(),
-          Bestsellers(),
+          BottomNavigationBarItem(
+            label: "Discover",
+            backgroundColor: AppColors().blackColor,
+            icon: Icon(
+              Icons.apps_sharp,
+              color: AppColors().whiteColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: AppColors().blackColor,
+            label: "Bookmark",
+            icon: Icon(
+              Icons.bookmark,
+              color: AppColors().whiteColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: AppColors().blackColor,
+            label: "Cart",
+            icon: Icon(
+              Icons.shopping_cart,
+              color: AppColors().whiteColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: AppColors().blackColor,
+            label: "Profile",
+            icon: Icon(
+              Icons.person,
+              color: AppColors().whiteColor,
+            ),
+          )
         ],
       ),
-      bottomNavigationBar: BottomBar(
-          selectedIndex: _selectedIndex, onItemSelected: _onItemTapped),
     );
   }
 
