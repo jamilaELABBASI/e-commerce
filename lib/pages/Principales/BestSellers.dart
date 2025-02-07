@@ -67,7 +67,7 @@ class _BestsellersState extends State<Bestsellers> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "data",
+              "Best sellers",
               style: AppTextStyle.text1,
             ),
             SizedBox(
@@ -84,64 +84,69 @@ class _BestsellersState extends State<Bestsellers> {
                 itemBuilder: (context, index) => Container(
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: Container(
-                    width: screenWidth * 0.4,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors().greyColor,
-                          //width: screenWidth * 0.005,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Container(
+                      width: screenWidth * 0.4,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors().greyColor,
+                            //width: screenWidth * 0.005,
+                          ),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: screenHeight * 0.1,
+                              //width: screenWidth * 0.3,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image:
+                                          AssetImage(products[index].image))),
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.01,
+                            ),
+                            Text(
+                              products[index].titre,
+                              style: AppTextStyle.text3
+                                  .copyWith(color: AppColors().greyColor),
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.01,
+                            ),
+                            Text(
+                              products[index].description,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: AppTextStyle.text2,
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.01,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                    "\$" +
+                                        products[index].nouveauPrix.toString(),
+                                    style: AppTextStyle.text2.copyWith(
+                                        color: AppColors().brownColor)),
+                                Text(
+                                  "\$" + products[index].ancienPrix.toString(),
+                                  style: TextStyle(
+                                      decoration: TextDecoration.lineThrough),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: screenHeight * 0.1,
-                            //width: screenWidth * 0.3,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(products[index].image))),
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.01,
-                          ),
-                          Text(
-                            products[index].titre,
-                            style: AppTextStyle.text3
-                                .copyWith(color: AppColors().greyColor),
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.01,
-                          ),
-                          Text(
-                            products[index].description,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: AppTextStyle.text2,
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.01,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                  "\$" + products[index].nouveauPrix.toString(),
-                                  style: AppTextStyle.text2
-                                      .copyWith(color: AppColors().brownColor)),
-                              Text(
-                                "\$" + products[index].ancienPrix.toString(),
-                                style: TextStyle(
-                                    decoration: TextDecoration.lineThrough),
-                              ),
-                            ],
-                          )
-                        ],
                       ),
                     ),
                   ),
