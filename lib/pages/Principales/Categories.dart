@@ -1,5 +1,4 @@
 import 'package:e_commerce/Style/AppTextStyle.dart';
-import 'package:e_commerce/pages/Principales/Super_Flash_Sale.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

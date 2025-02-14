@@ -1,17 +1,14 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
+import 'package:e_commerce/pages/BottomBarUi/Bookmark.dart';
 import 'package:e_commerce/pages/BottomBarUi/Discover.dart';
 import 'package:e_commerce/pages/BottomBarUi/Shop.dart';
-import 'package:e_commerce/pages/Principales/BestSellers.dart';
-import 'package:e_commerce/pages/Principales/Categories.dart';
-import 'package:e_commerce/pages/Principales/Flash_Sale.dart';
-import 'package:e_commerce/pages/Principales/PromoPictures.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:flutter/material.dart';
+
+import '../BottomBarUi/Cart.dart';
+import '../BottomBarUi/Profile.dart';
 import '../Widgets/BottomBar.dart';
-import 'Super_Flash_Sale.dart';
 
 class Principale_UI extends StatefulWidget {
   const Principale_UI({super.key});
@@ -22,16 +19,22 @@ class Principale_UI extends StatefulWidget {
 
 class _Principale_UIState extends State<Principale_UI> {
   int _currentIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   List<Widget> body = [
     Shop(),
     Discover(),
-    Shop(),
-    Discover(),
-    Shop(),
+    Bookmark(),
+    Cart(),
+    Profile(),
   ];
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
+    //var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -68,57 +71,13 @@ class _Principale_UIState extends State<Principale_UI> {
                 ],
               ),
             ),
-      body: body[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: screenWidth * 0.099,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: body,
+      ),
+      bottomNavigationBar: BottomBar(
         currentIndex: _currentIndex,
-        onTap: (int newIndex) {
-          setState(() {
-            _currentIndex = newIndex;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            label: "Shop",
-            backgroundColor: AppColors().blackColor,
-            icon: Icon(
-              Icons.shopify_sharp,
-              color: AppColors().whiteColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Discover",
-            backgroundColor: AppColors().blackColor,
-            icon: Icon(
-              Icons.apps_sharp,
-              color: AppColors().whiteColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: AppColors().blackColor,
-            label: "Bookmark",
-            icon: Icon(
-              Icons.bookmark,
-              color: AppColors().whiteColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: AppColors().blackColor,
-            label: "Cart",
-            icon: Icon(
-              Icons.shopping_cart,
-              color: AppColors().whiteColor,
-            ),
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: AppColors().blackColor,
-            label: "Profile",
-            icon: Icon(
-              Icons.person,
-              color: AppColors().whiteColor,
-            ),
-          )
-        ],
+        onTap: _onItemTapped,
       ),
     );
   }

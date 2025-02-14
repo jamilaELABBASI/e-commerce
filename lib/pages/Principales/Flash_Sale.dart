@@ -3,7 +3,6 @@ import 'package:e_commerce/pages/Widgets/Most_Popular_Product.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../Models/Popular_Product_Model.dart';
-import '../../Style/AppColors.dart';
 
 class Flash_Sale extends StatefulWidget {
   const Flash_Sale({super.key});
@@ -61,7 +60,7 @@ class _Flash_SaleState extends State<Flash_Sale> {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+    //var screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: EdgeInsets.all(20),

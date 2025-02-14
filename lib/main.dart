@@ -1,7 +1,5 @@
 import 'package:e_commerce/Routes/AppRoutes.dart';
-import 'package:e_commerce/pages/First_UI.dart';
 import 'package:e_commerce/pages/Principales/Principale_UI.dart';
-import 'package:e_commerce/pages/Skip_UI/First_Skip_UI.dart';
 import 'package:flutter/material.dart';
 
 void main() {

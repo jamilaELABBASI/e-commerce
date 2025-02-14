@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../Style/AppColors.dart';
 import '../../Style/AppTextStyle.dart';
-import '../Widgets/BottomBar.dart';
 
 class Discover extends StatelessWidget {
   const Discover({super.key});

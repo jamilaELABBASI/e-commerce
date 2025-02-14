@@ -1,9 +1,6 @@
 import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
 import 'package:flutter/material.dart';
-import 'package:e_commerce/Routes/AppRoutes.dart';
-
-import 'Second_UI.dart';
 
 class First_UI extends StatelessWidget {
   const First_UI({super.key});

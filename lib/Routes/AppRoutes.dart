@@ -1,10 +1,13 @@
+import 'package:e_commerce/pages/BottomBarUi/Bookmark.dart';
 import 'package:e_commerce/pages/Connection/Login.dart';
 import 'package:e_commerce/pages/First_UI.dart';
 import 'package:e_commerce/pages/Second_UI.dart';
 import 'package:e_commerce/pages/Third_UI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:e_commerce/pages/Connection/SignUp.dart';
+import '../pages/BottomBarUi/Cart.dart';
 import '../pages/BottomBarUi/Discover.dart';
+import '../pages/BottomBarUi/Profile.dart';
 import '../pages/Fourth_UI.dart';
 import '../pages/Principales/Principale_UI.dart';
 import '../pages/Skip_UI/First_Skip_UI.dart';
@@ -23,6 +26,9 @@ class AppRoutes {
       '/Terms_Service': (context) => Terms_Service(),
       '/Principale_UI': (context) => Principale_UI(),
       '/Discover': (context) => Discover(),
+      '/Bookmark': (context) => Bookmark(),
+      '/Cart': (context) => Cart(),
+      '/Profile': (context) => Profile(),
     };
   }
 }

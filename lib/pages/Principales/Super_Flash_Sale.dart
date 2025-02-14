@@ -2,8 +2,6 @@ import 'package:e_commerce/Style/AppColors.dart';
 import 'package:e_commerce/Style/AppTextStyle.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../Models/Popular_Product_Model.dart';
-
 class Super_Flash_Sale extends StatefulWidget {
   const Super_Flash_Sale({super.key});
 
@@ -14,7 +12,7 @@ class Super_Flash_Sale extends StatefulWidget {
 class _Super_Flash_SaleState extends State<Super_Flash_Sale> {
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
+    //var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
