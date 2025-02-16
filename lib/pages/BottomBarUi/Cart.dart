@@ -338,17 +338,6 @@ class _CartState extends State<Cart> {
                 ),
               ),
             )
-            /*TextButton(
-              onPressed: () {},
-              child: Text(
-                "Continue",
-                style:
-                    AppTextStyle.text2.copyWith(color: AppColors().whiteColor),
-              ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(AppColors().brownColor)),
-            )  */
           ],
         ),
       ),
